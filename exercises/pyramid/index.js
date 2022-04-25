@@ -14,16 +14,61 @@
 //       ' ### '
 //       '#####'
 
-function pyramid(n) {
-  for (let row = 0; row < n; row++) {
-    let pyramid = ''
-    for (let col = 0; col < n; col++) {
-      pyramid += ' '.repeat(n - 1)
-      pyramid += '#'.repeat(row + 1)
-      pyramid += ' '.repeat(n - 1)
-    }
-    console.log(pyramid)
+/*
+n1 = 1
+n2 = 3
+n3 = 5
+n4 = 7
+n5 = 9
+
+nx = 2x - 1
+*/
+
+function pyramid(n, row = 0, level = '') {
+  if (n === row) return
+
+  if (2 * n - 1 === level.length) {
+    console.log(level)
+    return pyramid(n, ++row)
   }
+  const center = Math.floor((2 * n - 1) / 2)
+  let temp
+
+  if (center - row <= level.length && center + row >= level.length) temp = '#'
+  else temp = ' '
+
+  pyramid(n, row, level + temp)
 }
 
 module.exports = pyramid
+
+// Answer 1
+// const baseLength = 2 * n - 1
+//   const center = Math.floor(baseLength / 2)
+
+//   for (let row = 0; row < n; row++) {
+//     let level = ''
+
+//     for (let col = 0; col < baseLength; col++) {
+//       if (center - row <= col && center + row >= col) level += '#'
+//       else level += ' '
+//     }
+//     console.log(level)
+//   }
+
+// Answer 2
+// function pyramid(n, row = 0, level = '') {
+//   if (n === row) return
+
+//   if (2 * n - 1 === level.length) {
+//     console.log(level)
+//     return pyramid(n, ++row)
+//   }
+//   const center = Math.floor((2 * n - 1) / 2)
+//   let temp
+
+//   if (center - row <= level.length && center + row >= level.length) temp = '#'
+//   else temp = ' '
+
+//   pyramid(n, row, level + temp)
+// }
