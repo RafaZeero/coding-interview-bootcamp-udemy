@@ -24,20 +24,12 @@ n5 = 9
 nx = 2x - 1
 */
 
-function pyramid(n, row = 0, level = '') {
-  if (n === row) return
-
-  if (2 * n - 1 === level.length) {
-    console.log(level)
-    return pyramid(n, ++row)
+function pyramid(n) {
+  for (let i = 0; i < n; i++) {
+    let spaces = new Array(n - 1 - i).fill(' ').join('')
+    let blocks = new Array(i * 2 + 1).fill('#').join('')
+    console.log(spaces + blocks + spaces)
   }
-  const center = Math.floor((2 * n - 1) / 2)
-  let temp
-
-  if (center - row <= level.length && center + row >= level.length) temp = '#'
-  else temp = ' '
-
-  pyramid(n, row, level + temp)
 }
 
 module.exports = pyramid
@@ -71,4 +63,13 @@ module.exports = pyramid
 //   else temp = ' '
 
 //   pyramid(n, row, level + temp)
+// }
+
+// Answer 3
+// function pyramid(n) {
+//   for (let i = 0; i < n; i++) {
+//     let spaces = new Array(n - 1 - i).fill(' ').join('')
+//     let blocks = new Array(i * 2 + 1).fill('#').join('')
+//     console.log(spaces + blocks + spaces)
+//   }
 // }
