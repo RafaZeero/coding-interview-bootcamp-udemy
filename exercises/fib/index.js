@@ -8,18 +8,26 @@
 // Example:
 //   fib(4) === 3
 
-function fib(n) {
-  const result = [0, 1]
+function memoize(fn) {
+  const cache = {}
+  return function (...args) {
+    if (cache[args]) return cache[args]
 
-  for (let i = 2; i <= n; i++) {
-    const lastElement = result[i - 1]
-    const beforeLastElement = result[i - 2]
+    const result = fn.apply(this, args)
+    cache[args] = result
 
-    result.push(lastElement + beforeLastElement)
+    return result
   }
-
-  return result[result.length - 1]
 }
+
+function slowFib(n) {
+  if (n <= 0) return 0
+  if (n === 1) return 1
+
+  return fib(n - 1) + fib(n - 2)
+}
+
+const fib = memoize(slowFib)
 
 module.exports = fib
 
@@ -27,9 +35,8 @@ module.exports = fib
 // function fib(n) {
 //   if (n <= 0) return 0
 //   if (n === 1) return 1
-//   let result = fib(n - 1) + fib(n - 2)
 
-//   return result
+//   return fib(n - 1) + fib(n - 2)
 // }
 
 // Answer 2 --> Runtime complexity O(n) Linear
@@ -46,7 +53,7 @@ module.exports = fib
 //   return result[result.length - 1]
 // }
 
-// Answer 1 --> Runtime complexity O(tooBIG!!!)
+// Answer 3 --> Runtime complexity O(tooBIG!!!)
 // function fib(n) {
 //   if (n < 2 ) return n
 //   let result = fib(n - 1) + fib(n - 2)
