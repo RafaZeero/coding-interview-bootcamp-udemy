@@ -31,30 +31,32 @@ function matrix(n) {
   let endRow = n - 1
 
   while (startCol <= endCol && startRow <= endRow) {
-    // loop top rows Right to Left
-    for (let i = startCol; i < endCol; i++) {
+    // loop top rows Left to Right
+    for (let i = startCol; i <= endCol; i++) {
       results[startRow][i] = counter
       counter++
     }
+    startRow++
     // loop right col Top to Bottom
-    for (let i = startRow; i < endRow; i++) {
-      results[i][startRow] = counter
+    for (let i = startRow; i <= endRow; i++) {
+      results[i][endCol] = counter
       counter++
     }
+    endCol--
 
-    //loop bottom rows Left to Right
-    for (let i = endcol; i >= startCol; i--) {
-      results[endRow][endCol] = counter
+    //loop bottom rows Right to Left
+    for (let i = endCol; i >= startCol; i--) {
+      results[endRow][i] = counter
       counter++
     }
-
+    endRow--
     //loop left col Bottom to Top
     for (let i = endRow; i >= startRow; i--) {
-      results[endRow][startCol] = counter
+      results[i][startCol] = counter
       counter++
     }
+    startCol++
   }
-
   return results
 }
 

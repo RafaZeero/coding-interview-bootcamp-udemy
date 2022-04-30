@@ -8,6 +8,47 @@
 // Example:
 //   fib(4) === 3
 
-function fib(n) {}
+function fib(n) {
+  const result = [0, 1]
 
-module.exports = fib;
+  for (let i = 2; i <= n; i++) {
+    const lastElement = result[i - 1]
+    const beforeLastElement = result[i - 2]
+
+    result.push(lastElement + beforeLastElement)
+  }
+
+  return result[result.length - 1]
+}
+
+module.exports = fib
+
+// Answer 1 --> Runtime complexity O(tooBIG!!!)
+// function fib(n) {
+//   if (n <= 0) return 0
+//   if (n === 1) return 1
+//   let result = fib(n - 1) + fib(n - 2)
+
+//   return result
+// }
+
+// Answer 2 --> Runtime complexity O(n) Linear
+// function fib(n) {
+//   const result = [0, 1]
+
+//   for (let i = 2; i <= n; i++) {
+//     const lastElement = result[i - 1]
+//     const beforeLastElement = result[i - 2]
+
+//     result.push(lastElement + beforeLastElement)
+//   }
+
+//   return result[result.length - 1]
+// }
+
+// Answer 1 --> Runtime complexity O(tooBIG!!!)
+// function fib(n) {
+//   if (n < 2 ) return n
+//   let result = fib(n - 1) + fib(n - 2)
+//   return result
+// }
