@@ -42,11 +42,15 @@ class LinkedList {
   clear() {
     this.head = null
   }
+
+  removeFirst() {
+    return (this.head = this.head.next)
+  }
 }
 
 module.exports = { Node, LinkedList }
 
-// GetLaste Answer
+// GetLast Answer
 // getLast(){
 //   if(!this.head){
 //     return null
@@ -60,4 +64,13 @@ module.exports = { Node, LinkedList }
 //     }
 //     node = node.next
 //   }
+// }
+
+// RemoveFirst Answer
+// removeFirst(){
+//   if(!this.head) return
+
+//   this.head = this.head.next
+
+//   return this.head
 // }
