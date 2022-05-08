@@ -32,12 +32,17 @@ class LinkedList {
   }
 
   getLast() {
-    let node = this.head
+    if (!this.head) {
+      return null
+    }
 
-    while (node.next) {
+    let node = this.head
+    while (node) {
+      if (!node.next) {
+        return node
+      }
       node = node.next
     }
-    return node
   }
   clear() {
     this.head = null
@@ -64,6 +69,20 @@ class LinkedList {
     let lastNode = this.getLast()
     if (lastNode) return (lastNode.next = new Node(data))
     else return (this.head = new Node(data))
+  }
+
+  getAt(index) {
+    let counter = 0
+    let node = this.head
+    while (node) {
+      if (counter === index) {
+        return node
+      }
+      counter++
+      node = node.next
+    }
+
+    return null
   }
 }
 
