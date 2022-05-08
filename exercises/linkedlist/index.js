@@ -84,6 +84,16 @@ class LinkedList {
 
     return null
   }
+
+  removeAt(index) {
+    if (!this.head) return
+    if (index === 0) return (this.head = this.head.next)
+
+    const prevNode = this.getAt(index - 1)
+    if (!prevNode.next) return
+
+    prevNode.next = prevNode.next.next
+  }
 }
 
 module.exports = { Node, LinkedList }
@@ -111,4 +121,22 @@ module.exports = { Node, LinkedList }
 //   this.head = this.head.next
 
 //   return this.head
+// }
+
+// RemoveAT Answer
+// removeAt(index) {
+//   if (!this.head) {
+//     return;
+//   }
+
+//   if (index === 0) {
+//     this.head = this.head.next;
+//     return;
+//   }
+
+//   const previous = this.getAt(index - 1);
+//   if (!previous || !previous.next) {
+//     return;
+//   }
+//   previous.next = previous.next.next;
 // }
